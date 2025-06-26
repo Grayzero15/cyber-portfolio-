@@ -1,0 +1,38 @@
+@import "tailwindcss";
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(180deg);
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-white/10 backdrop-blur-md border border-white/20 rounded-xl shadow-xl;
+  }
+  
+  .glass-card-blue {
+    @apply bg-blue-500/10 backdrop-blur-md border border-blue-300/20 rounded-xl shadow-xl;
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-400 bg-clip-text text-transparent;
+  }
+  
+  .cyber-glow {
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+  }
+}
