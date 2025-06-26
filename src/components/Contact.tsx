@@ -25,20 +25,23 @@ const Contact: React.FC = () => {
     });
   };
 
-  // 4. Update the handleSubmit function
-  const handleSubmit = (e: React.FormEvent) => {
+ const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!form.current) return;
     
-    if (!form.current) return; // Ensure form ref is available
+    // Create a new object for template parameters
+    const templateParams = {
+        ...formData,
+        time: new Date().toLocaleString() // Add current date and time
+    };
 
     setIsSubmitting(true);
     setStatusMessage('Sending...');
-
     emailjs
-      .sendForm(
+      .send(
         import.meta.env.VITE_EMAILJS_SERVICE_ID,
         import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-        form.current, // Use the form ref here
+        templateParams, // Pass the new object here
         import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       )
       .then(
